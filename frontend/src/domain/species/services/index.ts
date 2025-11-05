@@ -1,0 +1,1 @@
+export { speciesService } from './speciesService';

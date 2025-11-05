@@ -4,6 +4,8 @@ import { App } from './App';
 import { LoadingSpinner } from '@/core/components/LoadingSpinner';
 
 const HomePage = lazy(() => import('@/pages/Home'));
+const SpeciesListPage = lazy(() => import('@/pages/SpeciesList'));
+const SpeciesCreatePage = lazy(() => import('@/pages/SpeciesCreate'));
 const NotFoundPage = lazy(() => import('@/pages/NotFound'));
 
 /**
@@ -24,6 +26,27 @@ export const router = createBrowserRouter([
             <HomePage />
           </Suspense>
         ),
+      },
+      {
+        path: 'species',
+        children: [
+          {
+            index: true,
+            element: (
+              <Suspense fallback={<LoadingSpinner />}>
+                <SpeciesListPage />
+              </Suspense>
+            ),
+          },
+          {
+            path: 'create',
+            element: (
+              <Suspense fallback={<LoadingSpinner />}>
+                <SpeciesCreatePage />
+              </Suspense>
+            ),
+          },
+        ],
       },
       {
         path: '*',
